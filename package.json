@@ -1,0 +1,13 @@
+{
+  "name": "Vial",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "Raster": "git+https://github.com/robenkleene/raster.git",
+    "bullets": "git+https://github.com/robenkleene/bullets.git",
+    "mousetrap": "^1.5.2"
+  }
+}

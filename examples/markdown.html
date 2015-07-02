@@ -1,0 +1,160 @@
+<h1 id="sevenlanguagesinsevenweeks">Seven Languages in Seven Weeks</h1>
+
+<h2 id="ruby">Ruby</h2>
+
+<h3 id="typesystem">Type System</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Type_system">Type system - Wikipedia, the free encyclopedia</a>:</p>
+
+<blockquote>
+<p>A type system is a collection of rules that assign a property called a type to the various constructs—such as variables, expressions, functions or modules—a computer program is composed of.</p>
+</blockquote>
+
+<h4 id="strongvsweaktyping">Strong vs Weak Typing</h4>
+
+<p>Ruby is <em>strongly typed</em>, because it throws an error when you try to intermix <em>values</em> of different <em>types</em> e.g.,:</p>
+
+<pre><code>#!/usr/bin/env ruby  
+4 + 'four'
+</code></pre>
+
+<p><a href="http://en.wikipedia.org/wiki/Strongly_typed">Strong typing</a>:</p>
+
+<blockquote>
+<p>Most generally, &#8220;strong typing&#8221; implies that the programming language places severe restrictions on the intermixing that is permitted to occur, preventing the compiling or running of source code which uses data in what is considered to be an invalid way.</p>
+</blockquote>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<blockquote>
+<p>So, Ruby is strongly typed, meaning you’ll get an error when types collide. Ruby makes these type checks at run time, not compile time.</p>
+</blockquote>
+
+<h4 id="staticvsdynamictyping">Static vs Dynamic Typing</h4>
+
+<p>Ruby is dynamically typed, because it does type checks at run time, not compile time (so you can define a method that includes a type collusion, and ruby won&#8217;t through an error until it runs).</p>
+
+<p>E.g., Seven Languages in Seven Weeks:</p>
+
+<pre><code>&gt;&gt; def add_them_up &gt;&gt; 4 + 'four'  
+&gt;&gt; end  
+=&gt; nil  
+&gt;&gt; add_them_up  
+TypeError: String can't be coerced into Fixnum  
+        from (irb):56:in `+'  
+        from (irb):56:in `add_them_up'  
+        from (irb):58
+</code></pre>
+
+<blockquote>
+<p>So, Ruby does not do type checking until you actually try to execute code. This concept is called dynamic typing.</p>
+</blockquote>
+
+<p><a href="http://en.wikipedia.org/wiki/Type_system#Static_typing">Type system - Wikipedia, the free encyclopedia</a>:</p>
+
+<blockquote>
+<p>A programming language is said to use <em>static typing</em> when type checking is performed during compile-time as opposed to run-time.</p>
+
+<p>A programming language is said to be <em>dynamically typed</em> when the majority of its type checking is performed at run-time as opposed to at compile-time.</p>
+</blockquote>
+
+<h4 id="ducktyping">Duck Typing</h4>
+
+<p><a href="http://en.wikipedia.org/wiki/Duck_typing">Duck typing</a>:</p>
+
+<blockquote>
+<p>Duck Typing is a Style of Dynamic Typing in Which an Object&#8217;s Methods and Properties Determine the Valid Semantics, Rather Than its Inheritance from a Particular Class or Implementation of a Specific Interface.</p>
+
+<p>In duck typing, one is concerned with just those aspects of an object that are used, rather than with the type of the object itself. For example, in a non-duck-typed language, one can create a function that takes an object of type Duck and calls that object&#8217;s walk and quack methods. In a duck-typed language, the equivalent function would take an object of any type and call that object&#8217;s walk and quack methods.</p>
+</blockquote>
+
+<p>Using objects of type &#8220;id&#8221; is an example of duck typing in Objective-C:</p>
+
+<blockquote>
+<p>Objective-C, a cross between C and Smalltalk, allows one to declare objects of type &#8216;id&#8217; and send any message to them (provided the method is declared somewhere), like in Smalltalk. The sender can test an object to see if it responds to a message, the object can decide at the time of the message whether it will respond to it or not, and if the sender sends a message a recipient cannot respond to, an exception is raised. Thus, duck typing is fully supported by Objective-C.</p>
+</blockquote>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<blockquote>
+<p>Ruby’s type system also has several potential advantages. Your classes don’t have to inherit from the same parent to be used in the same way:</p>
+</blockquote>
+
+<pre><code># !/usr/bin/env ruby  
+i = 0  
+a = ['100', 100.0]
+
+while i &lt; 2  
+  puts a[i].to_i  
+  i = i + 1  
+end
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>100  
+100
+</code></pre>
+
+<blockquote>
+<p>You just saw duck typing in action. The first element of the array is a String, and the second is a Float. The same code converts each to an integer via to_i. Duck typing doesn’t care what the underlying type might be. If it walks like a duck and quacks like a duck, it’s a duck. In this case, the quack method is to_i.</p>
+</blockquote>
+
+<h3 id="functions">Functions</h3>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<blockquote>
+<p>Every function returns something. If you do not specify an explicit return, the function will return the value of the last expression that’s processed before exiting. Like everything else, this function is an object.</p>
+</blockquote>
+
+<h3 id="arrayimplementation">Array Implementation</h3>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<blockquote>
+<p><code>[]</code> is actually a method on Array:</p>
+</blockquote>
+
+<pre><code>&gt;&gt; [1].class  
+=&gt; Array  
+&gt;&gt; [1].methods.include?('[]')  
+=&gt; true
+</code></pre>
+
+<h3 id="symbols">Symbols</h3>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<pre><code>&gt;&gt; stuff = {:array =&gt; [1, 2, 3], :string =&gt; 'Hi, mom!'} =&gt; {:array=&gt;[1, 2, 3], :string=&gt;&quot;Hi, mom!&quot;}  
+&gt;&gt; stuff[:string]  
+=&gt; &quot;Hi, mom!&quot;
+</code></pre>
+
+<blockquote>
+<p>The last hash is interesting because I’m introducing a symbol for the first time. A symbol is an identifier preceded with a colon, like <code>:symbol</code>.</p>
+</blockquote>
+
+<h3 id="codeblocks">Code Blocks</h3>
+
+<p>Seven Languages in Seven Weeks:</p>
+
+<blockquote>
+<p>A code block is a function without a name. You can pass it as a parameter to a function or a method. For example:</p>
+</blockquote>
+
+<pre><code>&gt;&gt; 3.times {puts 'hiya there, kiddo'} hiya there, kiddo  
+hiya there, kiddo  
+hiya there, kiddo  
+hiya there, kiddo
+</code></pre>
+
+<blockquote>
+<p>The code between braces is called a code block. times is a method on Fixnum that simply does something some number of times, where something is a code block and number is the value of the Fixnum. You can specify code blocks with {/} or do/end. </p>
+</blockquote>
+
+<p>Ruby Convention:</p>
+
+<blockquote>
+<p>The typical Ruby convention is to use braces when your code block is on one line and use the do/end form when the code blocks span more than one line.</p>
+</blockquote>
