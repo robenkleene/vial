@@ -9,5 +9,10 @@
     "Raster": "git+https://github.com/robenkleene/raster.git",
     "bullets": "git+https://github.com/robenkleene/bullets.git",
     "mousetrap": "^1.5.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.0.1",
+    "gulp-plumber": "^1.0.1"
   }
 }

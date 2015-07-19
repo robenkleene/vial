@@ -1,20 +1,20 @@
+var path = require('path');
 var gulp = require('gulp');
 var jade = require('gulp-jade');
 var plumber = require('gulp-plumber');
-var path = require('path');
 
 var paths = {
   examples: {
-    src: './exampless/src/',
-    build: './exampless/build/'
+    src: './examples/src/',
+    build: './examples/build/'
   }
 };
 
 paths.examples.jade = {};
-paths.examples.jade.src = path.join(paths.example.src, 'jade/');
-paths.examples.jade.build = path.join(paths.example.build, 'html/');
-paths.examples.jade.srcGlob = path.join(paths.example.jade.src, '/*.jade');
-paths.examples.jade.srcWatchGlob = path.join(paths.example.jade.src, '/**/*.jade');
+paths.examples.jade.src = path.join(paths.examples.src, 'jade/');
+paths.examples.jade.build = path.join(paths.examples.build, 'html/');
+paths.examples.jade.srcGlob = path.join(paths.examples.jade.src, '/*.jade');
+paths.examples.jade.srcWatchGlob = path.join(paths.examples.jade.src, '/**/*.jade');
 
 gulp.task('jade-examples', function() {
   gulp.src(paths.examples.jade.srcGlob)
