@@ -4,39 +4,30 @@ var plumber = require('gulp-plumber');
 var path = require('path');
 
 var paths = {
-  example: {
-    src: './examples/src/',
-    build: './examples/build/'
+  examples: {
+    src: './exampless/src/',
+    build: './exampless/build/'
   }
 };
 
-paths.example.jade = {};
-paths.example.jade.src = path.join(paths.example.src, 'jade/');
-paths.example.jade.build = path.join(paths.example.build, 'html/');
-paths.example.jade.srcGlob = path.join(paths.example.jade.src, '/*.jade');
-paths.example.jade.srcWatchGlob = path.join(paths.example.jade.src, '/**/*.jade');
+paths.examples.jade = {};
+paths.examples.jade.src = path.join(paths.example.src, 'jade/');
+paths.examples.jade.build = path.join(paths.example.build, 'html/');
+paths.examples.jade.srcGlob = path.join(paths.example.jade.src, '/*.jade');
+paths.examples.jade.srcWatchGlob = path.join(paths.example.jade.src, '/**/*.jade');
 
-gulp.task('jade-example', function() {
-  gulp.src(path.join(paths.example.src, 'jade/*.jade'))
+gulp.task('jade-examples', function() {
+  gulp.src(paths.examples.jade.srcGlob)
     .pipe(plumber())
     .pipe(jade({
       pretty: true
     }))
-    .pipe(gulp.dest(paths.example.build));
+    .pipe(gulp.dest(paths.examples.build));
 });
 
 gulp.task('watch', function() {
-    // Test
-    gulp.watch(paths.test.src + 'jade/*.*', ['jade-test']);
-
-    var testJSPaths = [paths.test.src + 'tests/*.js', paths.test.src + 'js/*.js'];
-    gulp.watch(testJSPaths, ['browserify-test']);
-
-    // Example
-    // When "example" files change, also build "test" because "test" imports "example" content
-    var exampleJadePaths = [paths.example.src + 'jade/*.*', paths.example.src + 'markdown/*.*'];
-    gulp.watch(exampleJadePaths, ['jade-example', 'jade-test']);
+  gulp.watch(paths.examples.jade.srcWatchGlob, ['jade-examples']);
 });
 
-gulp.task('jade', ['jade-test', 'jade-example']);
-gulp.task('default', ['jade', 'browserify-test']);
+gulp.task('jade', ['jade-examples']);
+gulp.task('default', ['jade']);
